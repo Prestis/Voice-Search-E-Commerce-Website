@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.space-grotesk-edited {
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+
+.nav-item{
+    padding-top: 10px;
+    align-items: center;
+} 
+
+
+
+.img-thumbnail{
+    width: 250px;
+}
+
+
+
+/* CSS to style and position the button */
+.fixed-button-area {
+  position: fixed;
+  bottom: 50px; /* Adjust this value to set the distance from the bottom */
+  right: 20px; /* Adjust this value to set the distance from the right */
+  z-index: 9999; /* Ensure it's above other content */
+}
+
+.fixed-button-area-text {
+  display: none;
+}
+.fixed-button {
+    position: fixed;
+    bottom: 20px; /* Adjust this value to set the distance from the bottom */
+    right: 20px; /* Adjust this value to set the distance from the right */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 9999; /* Ensure it's above other content */
+  }
+
+  /* Additional styles to make it look better */
+  .fixed-button:hover {
+    background-color: #0056b3; /* Hover background color */
+  }
