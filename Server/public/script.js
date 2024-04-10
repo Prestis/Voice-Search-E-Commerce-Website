@@ -1,3 +1,5 @@
+//const { query } = require("express");
+
 //Total Loader
 document.addEventListener('DOMContentLoaded', function(){
     fetch('http://localhost:3000/getAll')
@@ -42,13 +44,14 @@ document.addEventListener('DOMContentLoaded', function(){
     .then(data => loadRAMPageCards(data['data']));
 })
 
+
 //HTML Card loading functions
 function loadFrontPageCards(data){
 
     let cardHTML = "";
     let counter = 1;
 
-    data.forEach(function ({brand, product_id, name, description, file_name}) {
+    data.forEach(function ({brand, product_id, name, description, file_name, price }) {
         
         if(counter > 6){
             return;
@@ -61,6 +64,7 @@ function loadFrontPageCards(data){
         cardHTML += `${brand} - ${name} </h5>` ;
         cardHTML += `<p class="card-text">${description}</p>`;
         cardHTML += `<button data-id=${product_id} class="btn btn-primary">Add to cart</button>`;
+        cardHTML += `<p class="card-text text-info">${price}€</p>`;
         cardHTML += "</div>";
 
 
@@ -229,7 +233,6 @@ function loadRAMPageCards(data){
     //card.innerHTML = cardHTML;
     //console.log(data)
 }
-
 
 
 

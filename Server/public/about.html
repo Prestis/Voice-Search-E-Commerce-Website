@@ -22,7 +22,7 @@
 
     <body>
         <header>
-            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
               <a href="index.html"
                   class="navbar-brand mb-0">
                   <img 
@@ -32,6 +32,16 @@
                   width="150" height="30"
                   >
               </a>
+              <button 
+              type="button"
+              class="navbar-toggler"
+              data-bs-toggle="collapse"
+              data-bs-target="#mainNavbar"
+              aria-controls="mainNavbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation bar">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
               <div class="collapse navbar-collapse"
                   id="mainNavbar">
                   <ul class="navbar-nav">
@@ -72,13 +82,26 @@
                       </li>
                   </ul>
               </div>
+              <form class="d-flex">
+                  <input type="text" class="form-control me-2">
+                  <button type="submit" class="btn btn-outline-primary">
+                      <span class="bi bi-search"></span>
+                  </button>
+              </form>
             </nav>  
               
               
-        </header>
+          </header>
         <main>
-            <h2> ABOUT US </h2>
-            
+            <!--Welcome message-->
+            <div class="bg-light pt-4 ">
+                <h3 class="text-center">
+                    About Us
+                </h3>
+                <p class="text-center">
+                    Learn more about us
+                </p>
+            </div>
         </main>
         <footer>
             <!-- place footer here -->

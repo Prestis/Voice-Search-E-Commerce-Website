@@ -1,5 +1,7 @@
 const express = require('express');
 
+const transcribe = require("./openai.js");
+
 //var database = require('')
 const app = express();
 const cors = require('cors');
@@ -7,7 +9,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const dbService = require('./dbService');
+//const dbService = require('./dbService');
 const databaseService = require('./dbService');
 
 
@@ -99,3 +101,6 @@ app.get('/getRAM',(request,response) =>{
 
     //console.log('test');
 })
+
+//Post method for Whisper transcriber
+app.post("/api/openai/transcriber",(req, res) => transcribe(req, res));
