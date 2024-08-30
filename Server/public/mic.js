@@ -34,44 +34,88 @@ function SetupStream(stream) {
     }
     
     recorder.onstop = e => {
-        const audioBlob = new Blob(chunks, { type: "audio/mp4"});
-        const audioUrl = URL.createObjectURL(audioBlob);
-        setAudioBlob(audioBlob);
-        let file = new File([audioUrl], "recorded_audio.mp3",{type:"audio/mp3", lastModified:new Date().getTime()});
-        console.log(file);
-
-        handleSubmitRecording;
+        const audioBlob = new Blob(chunks, { type: 'audio/mp3'});
+        const audioUrl = window.URL.createObjectURL(audioBlob);
+        //console.log('Audio URL is:' + audioUrl)
+        //setAudioBlob(audioBlob);
+        //let audioFile = new File([audioUrl], "recorded_audio.mp3",{type:"audio/mp3", lastModified:new Date().getTime()});
+        //console.log(file);
+        //handleSubmitRecording;
+        // Log blob size and type
+        console.log('Blob size:', audioBlob.size);
+        console.log('Blob type:', audioBlob.type);
         chunks = [];
+        transcribeRecording(audioBlob, audioUrl);
+        
     }
 
-
-    const handleSubmitRecording = async () => {
-        try{
-            const reader = new FileReader();
-            reader.onloadend = async () => {
-                const base64String = reader.result.split(',')[1]; // Extract base64 data from the result
-                const res = await fetch('http://localhost:3000/api/openai/transcriber',{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ audioBuffer: base64String, lang: "en" })
-                })
-                const data = await res.json();
-                setTranscription(data);
-                console.log(transcribtion);
-            };
-            reader.readAsDataURL(audioBlob);
-        }
-        catch(error){
-            console.log(error)
-        }
-    }
 
     console.log("Stream ready");
     can_record = 'true';
 }
 
+async function transcribeRecording(audioBlob,audioUrl){
+    console.log('Posting audio');
+
+    const formData = new FormData();
+    //audioForm.set('audio_data',audioBlob,audioUrl);
+    formData.set('audio',audioBlob);
+    //audioForm.append('type','mp3');
+    
+    // Log FormData contents
+    formData.forEach((value, key) => {
+        console.log(`${key}:`, value);
+    });
+
+    // const audioURLinJSON = {
+    //     url: audioUrl
+    // }
+
+    // console.log('URL in JSON form is:' + audioURLinJSON)
+
+    const options = {
+        method: 'POST',
+        // cache: 'no-cache',
+        // headers: {
+        //     'Content-Type': 'multipart/form-data'
+        //     //"Content-Type": "audio/mp3"
+        //     // 'multipart/form-data'            
+        // },
+        body: formData,
+        //body: JSON.stringify(audioURLinJSON)
+    };
+
+    // // Send the FormData using fetch
+    // fetch('/postAudio', {
+    //     method: 'POST',
+    //     body: formData,
+    // })
+    // .then(response => {
+    //     if (!response.ok) {
+    //         return response.json().then(errorData => {
+    //           throw new Error(`Server error: ${response.status}, ${JSON.stringify(errorData)}`);
+    //         });
+    //       }
+    //     return response.json();
+    //   })
+    // .then(data => console.log('Success:', data))
+    // .catch(error => console.error('Error:', error));
+
+    //Send audio form to backend
+    try {
+        const response = await fetch('/postAudio',options);
+        //console.log(response);
+        if (response.ok) {
+            console.log('Audio file uploaded successfully');
+            console.log(response);
+          } else {
+            console.error('Failed to upload audio file');
+          }
+    }catch(error){
+        console.error('Error uploading audio file:', error);
+    }
+
+}
 
 function ToggleMic(){
     console.log('Mic Pressed');
