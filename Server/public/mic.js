@@ -8,6 +8,7 @@ let recorder = null;
 let chunks = [];
 let audioBlob = '';
 let transcribtion = '';
+let voiceSearchResponse = '';
 
 
 function SetupAudio() {
@@ -103,11 +104,12 @@ async function transcribeRecording(audioBlob,audioUrl){
 
     //Send audio form to backend
     try {
-        const response = await fetch('/postAudio',options);
+        voiceSearchResponse = await fetch('/postAudio',options);
         //console.log(response);
-        if (response.ok) {
+        if (voiceSearchResponse.ok) {
             console.log('Audio file uploaded successfully');
-            console.log(response);
+            console.log(voiceSearchResponse);
+            window.location.href = "http://localhost:3000/product.html";
           } else {
             console.error('Failed to upload audio file');
           }

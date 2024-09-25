@@ -26,7 +26,7 @@ app.use(express.static('public'));
 // Middleware to handle file uploads
 //app.use(fileUpload());
 
-
+let voiceSearchQuery = '';
 
 
 //Read data from back-end  
@@ -108,6 +108,18 @@ app.get('/getRAM',(request,response) =>{
     //console.log('test');
 })
 
+app.get('/getSpecificItem',(request,response) =>{
+    const db = databaseService.getDbServiceInstance();
+
+    const result = db.getSpecificProduct(voiceSearchQuery);
+
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+
+    //console.log('test');
+})
+
 //async (req,res)
 app.post('/postAudio',upload.single('audio'), async (req,res)=> {
     const {buffer : recording} = req.file;
@@ -175,7 +187,7 @@ app.post('/postAudio',upload.single('audio'), async (req,res)=> {
             fs.unlinkSync(filePath);
         
             console.log('Response from   Python API:', response.data);
-
+            voiceSearchQuery = response.data;
             //Send res back to the client
             return res.json(response.data);
           })
