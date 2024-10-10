@@ -40,7 +40,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);
@@ -57,7 +56,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);
@@ -74,7 +72,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);
@@ -91,7 +88,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);
@@ -108,7 +104,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);
@@ -125,7 +120,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);
@@ -142,7 +136,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);
@@ -159,7 +152,6 @@ class databaseService {
                 });
             });
 
-            //console.log(response);
             return response;
         }catch(error){
             console.log(error);

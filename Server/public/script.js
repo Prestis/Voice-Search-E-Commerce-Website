@@ -1,4 +1,3 @@
-//const { query } = require("express");
 
 //Total Loader
 document.addEventListener('DOMContentLoaded', function(){
@@ -156,14 +155,10 @@ function loadGPUPageCards(data){
     //console.log(data)
 }
 function loadMotherboardPageCards(data){
-
     let cardHTML = "";
     let counter = 1;
-
     data.forEach(function ({brand, product_id, name, description, file_name}) {
-        
         let card = document.querySelector(`#motherboard-card-${counter}`)
-
         cardHTML += `<img class="card-img-top" src="../Resources/Images/${file_name}" alt="Card image cap">`;
         cardHTML += `<div class="card-body">`;
         cardHTML += `<h5 class="card-title">`;
@@ -172,14 +167,10 @@ function loadMotherboardPageCards(data){
         cardHTML += `<button data-id=${product_id} class="btn btn-primary">Add to cart</button>`;
         cardHTML += "</div>";
 
-
         card.innerHTML = cardHTML;
         cardHTML = "";
         counter = counter + 1;
     })
-      
-    //card.innerHTML = cardHTML;
-    //console.log(data)
 }
 function loadPSUPageCards(data){
 
