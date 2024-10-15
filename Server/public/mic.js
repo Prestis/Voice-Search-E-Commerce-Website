@@ -72,7 +72,7 @@ async function transcribeRecording(audioBlob,audioUrl){
         if (voiceSearchResponse.ok) {
             console.log('Audio file uploaded successfully');
             console.log(voiceSearchResponse);
-            //window.location.href = "http://localhost:3000/product.html";
+            window.location.href = "http://localhost:3000/product.html";
           } else {
             console.error('Failed to upload audio file');
           }
