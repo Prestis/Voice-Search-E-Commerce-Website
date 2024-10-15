@@ -145,7 +145,7 @@ app.post('/postAudio',upload.single('audio'), async (req,res)=> {
             console.log('Attempting to delete file at path:', filePath);
             fs.unlinkSync(filePath);
         
-            console.log('Response from   Python API:', response.data);
+            console.log('Response from Python API:', response.data);
             voiceSearchQuery = response.data;
             //Send res back to the client
             return res.json(response.data);
